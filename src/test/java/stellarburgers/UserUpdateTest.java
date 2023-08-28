@@ -11,18 +11,20 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import stellarburgers.clients.AuthClient;
 import stellarburgers.generators.UserGenerator;
-
-import static constants.Code.USER_CREATED_CODE;
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 @RunWith(Parameterized.class)
 public class UserUpdateTest {
     private AuthClient restClient;
+    private String fieldName;
     private User user;
     ValidatableResponse createUniqueUserResponse;
     private String createdUserAuth;
 
     public UserUpdateTest(String fieldName, User user){
+        this.fieldName = fieldName;
         this.user = user;
     }
 
@@ -59,7 +61,7 @@ public class UserUpdateTest {
         boolean responseSuccess = updateCreatedUserResponse.extract().path("success");
 
         assertEquals(200, statusCode);
-        assertEquals(true, responseSuccess);
+        assertTrue(responseSuccess);
     }
 
     @Test
@@ -72,6 +74,6 @@ public class UserUpdateTest {
         boolean responseSuccess = updateCreatedUserResponse.extract().path("success");
 
         assertEquals(401, statusCode);
-        assertEquals(false, responseSuccess);
+        assertFalse(responseSuccess);
     }
 }

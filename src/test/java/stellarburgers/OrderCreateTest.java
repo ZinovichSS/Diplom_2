@@ -3,7 +3,6 @@ package stellarburgers;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
-import models.Ingredient;
 import models.Order;
 import models.User;
 import org.junit.After;
